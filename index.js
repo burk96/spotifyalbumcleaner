@@ -24,8 +24,6 @@ albums.forEach((album, index) => {
 
   const reorder = Math.floor(Math.random() * 20) + 5;
 
-  // console.log(artists, '-', name, index + 1);
-
   for (let i = 0; i < cleanedAlbums.length; i++) {
     if (
       name === cleanedAlbums[i].name &&
