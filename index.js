@@ -3,7 +3,7 @@ const { albums } = require('./spotify.json');
 
 const cleanedAlbums = [];
 
-albums.forEach((album) => {
+albums.forEach((album, index) => {
   let {
     artists,
     genres,
@@ -24,19 +24,36 @@ albums.forEach((album) => {
 
   const reorder = Math.floor(Math.random() * 20) + 5;
 
-  cleanedAlbums.push({
-    artists,
-    genres,
-    images,
-    name,
-    total_tracks,
-    release_date,
-    spotify,
-    price,
-    quantity,
-    reorder,
-  });
+  // console.log(artists, '-', name, index + 1);
+
+  for (let i = 0; i < cleanedAlbums.length; i++) {
+    if (
+      name === cleanedAlbums[i].name &&
+      artists === cleanedAlbums[i].artists
+    ) {
+      album.duplicate = true;
+    }
+  }
+
+  if (!album.duplicate) {
+    cleanedAlbums.push({
+      artists,
+      genres,
+      images,
+      name,
+      total_tracks,
+      release_date,
+      spotify,
+      price,
+      quantity,
+      reorder,
+    });
+  }
 });
+
+// cleanedAlbums.forEach((album, index) => {
+//   console.log(album.artists, '-', album.name, index + 1);
+// });
 
 const payload = JSON.stringify(cleanedAlbums);
 
